@@ -8,6 +8,10 @@ class Fridge {
 	getItemCount() {
 		return this.itemCount;
 	}
+
+	setCurrentDate() {
+		return "18/10/2021";
+	}
 }
 
 module.exports = Fridge;
