@@ -1,8 +1,12 @@
 class Fridge {
-	scanAddedItem(item) {}
+	itemCount = 0;
+
+	scanAddedItem(item) {
+		this.itemCount++;
+	}
 
 	getItemCount() {
-		return 1;
+		return this.itemCount;
 	}
 }
 
