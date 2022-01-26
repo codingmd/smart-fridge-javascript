@@ -21,9 +21,6 @@ describe("index", () => {
     const milk = new Item("milk", "21/10/21", "sealed");
     const fridge = new Fridge();
     fridge.scanAddedItem(milk);
-    const currentTime = new Date(
-      new Date().getTime() + 0 * 60 * 60 * 1000
-    ).toLocaleTimeString();
-    expect(fridge.setCurrentDate()).toBe(currentTime);
+    expect(milk.scannedTime).toBe(currentTime);
   });
 });

@@ -4,6 +4,7 @@ class Fridge {
 
   scanAddedItem(item) {
     this.itemCount++;
+    item.scannedTime = this.setCurrentDate();
     this.items.push(item);
   }
 
