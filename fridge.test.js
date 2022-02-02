@@ -22,6 +22,6 @@ describe("index", () => {
     const fridge = new Fridge();
     fridge.scanAddedItem(milk);
     console.log(new Date());
-    expect(milk.scannedTime).not(null);
+    expect(milk.scannedTime).not.toBe(null);
   });
 });
