@@ -13,9 +13,7 @@ class Fridge {
   }
 
   setCurrentDate() {
-    const currentTime = new Date(
-      new Date().getTime() + 0 * 60 * 60 * 1000
-    ).toLocaleTimeString();
+    const currentTime = new Date().toLocaleTimeString();
     console.log(currentTime);
     return currentTime;
   }
