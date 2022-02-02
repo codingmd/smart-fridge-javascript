@@ -17,6 +17,10 @@ class Fridge {
     console.log(currentTime);
     return currentTime;
   }
+
+  removeItem(item) {
+    this.itemCount--;
+  }
 }
 
 module.exports = Fridge;

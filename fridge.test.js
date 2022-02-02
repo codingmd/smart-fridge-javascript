@@ -2,7 +2,6 @@ const Item = require("./item.js");
 const Fridge = require("./fridge.js");
 
 describe("index", () => {
-
   it("when 1 item added to fridge then fridge count is 1 ", () => {
     const milk = new Item("milk", "21/10/21", "sealed");
     const fridge = new Fridge();
@@ -30,5 +29,17 @@ describe("index", () => {
     fridge.scanAddedItem(milk);
 
     expect(milk.scannedTime).not.toBe(null);
+  });
+
+  it("when 1 item is removed from the fridge, the item count is reduced by 1", () => {
+    const milk = new Item("milk", "21/10/21", "sealed");
+    const butter = new Item("butter", "21/10/21", "sealed");
+    const fridge = new Fridge();
+
+    fridge.scanAddedItem(milk);
+    fridge.scanAddedItem(butter);
+    fridge.removeItem(milk);
+
+    expect(fridge.getItemCount()).toBe(1);
   });
 });
