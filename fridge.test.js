@@ -43,6 +43,14 @@ describe("index", () => {
 		expect(fridge.getItemCount()).toBe(1);
 	});
 
+	it("when the fridge is empty the count will not go below 0", () => {
+		const milk = new Item("milk", "21/10/21", "sealed");
+		const fridge = new Fridge();
+
+		fridge.removeItem(milk);
+		expect(fridge.getItemCount()).toBe(0);
+	});
+
 	it("displays items in fridge", () => {
 		const milk = new Item("milk", "21/10/21", "sealed");
 		const butter = new Item("butter", "21/10/21", "sealed");
