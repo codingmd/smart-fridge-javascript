@@ -38,7 +38,7 @@ describe("index", () => {
 
 		fridge.scanAddedItem(milk);
 		fridge.scanAddedItem(butter);
-		fridge.removeItem(milk);
+		fridge.removeItemFromFridge(milk);
 
 		expect(fridge.getItemCount()).toBe(1);
 	});
@@ -47,8 +47,15 @@ describe("index", () => {
 		const milk = new Item("milk", "21/10/21", "sealed");
 		const fridge = new Fridge();
 
-		fridge.removeItem(milk);
+		fridge.removeItemFromFridge(milk);
 		expect(fridge.getItemCount()).toBe(0);
+	});
+
+	it("only items in fridge can be removed from fridge", () => {
+		const milk = new Item("milk", "21/10/21", "sealed");
+		const fridge = new Fridge();
+		fridge.scanAddedItem(milk);
+		expect(fridge.removeItemFromFridge(milk)).toBe(true);
 	});
 
 	it("verify item has been added to fridge", () => {
@@ -57,7 +64,7 @@ describe("index", () => {
 
 		fridge.scanAddedItem(milk);
 		expect(fridge.isItemInFridge(milk)).toBe(true);
-	})
+	});
 
 	// it("displays items in fridge", () => {
 	// 	const milk = new Item("milk", "21/10/21", "sealed");

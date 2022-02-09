@@ -8,9 +8,9 @@ class Fridge {
 		this.items.push(item);
 	}
 
-  isItemInFridge(item) {
-    return this.items.includes(item);
-  }
+	isItemInFridge(item) {
+		return this.items.includes(item);
+	}
 
 	getItemCount() {
 		return this.itemCount;
@@ -22,11 +22,12 @@ class Fridge {
 		return currentTime;
 	}
 
-	removeItem(item) {
-		if (this.itemCount > 0) {
+	removeItemFromFridge(item) {
+		if (this.isItemInFridge(item)) {
 			this.itemCount--;
+			return true;
 		}
+		return false;
 	}
 }
-
 module.exports = Fridge;
