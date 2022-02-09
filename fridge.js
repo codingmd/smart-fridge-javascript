@@ -8,6 +8,10 @@ class Fridge {
 		this.items.push(item);
 	}
 
+  isItemInFridge(item) {
+    return this.items.includes(item);
+  }
+
 	getItemCount() {
 		return this.itemCount;
 	}
@@ -19,7 +23,7 @@ class Fridge {
 	}
 
 	removeItem(item) {
-		if (this.getItemCount() > 0) {
+		if (this.itemCount > 0) {
 			this.itemCount--;
 		}
 	}
