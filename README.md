@@ -14,4 +14,4 @@
 - working out time left on item before expiry
 - opening the fridge and how it affects all items in fridge
 - display formatted listing of items with expiry information, ordered by expiry(in progress/commented)
-- signal door has been opened
+- signal door has been opened (has been started)

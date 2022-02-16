@@ -2,6 +2,10 @@ class Fridge {
   itemCount = 0;
   items = [];
 
+  signalDoorOpened() {
+    return true;
+  }
+
   scanAddedItem(item) {
     this.itemCount++;
     item.scannedTime = this.setCurrentDate();
@@ -26,7 +30,7 @@ class Fridge {
     if (this.isItemInFridge(item)) {
       this.itemCount--;
     }
-	return "item not in fridge";
+    return "item not in fridge";
   }
 }
 module.exports = Fridge;
