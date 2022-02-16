@@ -58,6 +58,15 @@ describe("index", () => {
 		expect(fridge.removeItemFromFridge(milk)).toBe(true);
 	});
 
+	it(" items not in fridge can't be removed from fridge", () => {
+		const milk = new Item("milk", "21/10/21", "sealed");
+		const butter = new Item("butter", "21/10/21", "sealed");
+		const fridge = new Fridge();
+		fridge.scanAddedItem(milk);
+
+		expect(fridge.removeItemFromFridge(butter)).toBe(false);
+	});
+
 	it("verify item has been added to fridge", () => {
 		const milk = new Item("milk", "21/10/21", "sealed");
 		const fridge = new Fridge();
