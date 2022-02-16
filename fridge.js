@@ -25,9 +25,8 @@ class Fridge {
   removeItemFromFridge(item) {
     if (this.isItemInFridge(item)) {
       this.itemCount--;
-      // return true;
     }
-    // return false;
+	return "item not in fridge";
   }
 }
 module.exports = Fridge;

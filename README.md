@@ -10,6 +10,7 @@
 - when the fridge is empty the count will not go below 0 (done)
 - verify item has been added to fridge (done)
 - only items in fridge can be removed from fridge (done)
+- verify string confirmation that item cannot be removed if not in fridge (done)
 - working out time left on item before expiry
 - opening the fridge and how it affects all items in fridge
 - display formatted listing of items with expiry information, ordered by expiry(in progress/commented)
