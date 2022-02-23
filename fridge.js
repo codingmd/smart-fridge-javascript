@@ -1,9 +1,16 @@
 class Fridge {
   itemCount = 0;
   items = [];
+  fridgeDoorOpened = false;
 
   signalDoorOpened() {
-    return true;
+    this.fridgeDoorOpened = true;
+    return this.fridgeDoorOpened;
+  }
+
+  signalDoorClosed() {
+    this.fridgeDoorOpened = false;
+    return this.fridgeDoorOpened;
   }
 
   scanAddedItem(item) {

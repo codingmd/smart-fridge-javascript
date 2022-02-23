@@ -89,6 +89,15 @@ describe("index", () => {
     expect(fridge.signalDoorOpened()).toBe(true);
   });
 
+  it("signal door has been closed", () => {
+    const fridge = new Fridge();
+    const milk = new Item("milk", "21/10/21", "sealed");
+    fridge.signalDoorOpened();
+    fridge.scanAddedItem(milk);
+
+    expect(fridge.signalDoorClosed()).toBe(false);
+  });
+
   // it("displays items in fridge", () => {
   // 	const milk = new Item("milk", "21/10/21", "sealed");
   // 	const butter = new Item("butter", "21/10/21", "sealed");
