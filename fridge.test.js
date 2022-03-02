@@ -101,7 +101,7 @@ describe("index", () => {
 
 	it("when the door is opened the expiry of all items is reduced by 1 hour or 5 hours depending on condition", () => {
 		const fridge = new Fridge();
-		const milk = new Item("milk", "21/10/21", "sealed");
+		const milk = new Item("milk", "21/09/21", "sealed");
 
 		fridge.signalDoorOpened();
 		fridge.scanAddedItem(milk);
