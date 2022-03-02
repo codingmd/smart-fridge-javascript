@@ -10,13 +10,13 @@ class Item {
 		const day = expiry.slice(0, 2);
 		const month = expiry.slice(3, 5) - 1;
 		const year = "20" + expiry.slice(6, 8);
-		
-    this.expiryDate = new Date(year, month, day);
+
+		this.expiryDate = new Date(year, month, day);
 	}
 
-  getExpiry() {
-    return this.expiryDate.toLocaleDateString('en-GB');
-  }
+	getExpiry() {
+		return this.expiryDate.toLocaleDateString("en-GB", { dateStyle: "short" });
+	}
 }
 
 module.exports = Item;
