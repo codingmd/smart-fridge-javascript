@@ -110,7 +110,7 @@ describe("index", () => {
 		// fridge.signalDoorOpened();
 		// fridge.signalDoorClosed();
 
-		expect(milk.expiry).toBe("21/10/21");
+		expect(milk.getExpiry()).toBe("21/09/21");
 	});
 
 	// it("displays items in fridge", () => {

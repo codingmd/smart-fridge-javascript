@@ -7,15 +7,16 @@ class Item {
 	}
 
 	setExpiryDate(expiry) {
-		//expiry = "day/month/year"
-		//slice(6, 8), slice(3, 5), slice(0, 2)
 		const day = expiry.slice(0, 2);
-		const month = expiry.slice(3, 5);
+		const month = expiry.slice(3, 5) - 1;
 		const year = "20" + expiry.slice(6, 8);
-		const expiryDate = new Date(year, month, day).toLocaleTimeString();
-		console.log(day, month, year);
-		return expiryDate;
+		
+    this.expiryDate = new Date(year, month, day);
 	}
+
+  getExpiry() {
+    return this.expiryDate.toLocaleDateString('en-GB');
+  }
 }
 
 module.exports = Item;

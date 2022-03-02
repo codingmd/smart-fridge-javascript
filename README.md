@@ -16,4 +16,4 @@
 - display formatted listing of items with expiry information, ordered by expiry(in progress/commented)
 - signal door has been opened (done)
 - signal door has been closed (done)
-- when the door is opened the expiry of all items is reduced by 1 hour or 5 hours depending on condition
+- when the door is opened the expiry of all items is reduced by 1 hour or 5 hours depending on condition (in progress)
