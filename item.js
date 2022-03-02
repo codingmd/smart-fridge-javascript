@@ -15,7 +15,7 @@ class Item {
 	}
 
 	getExpiry() {
-		return this.expiryDate.toLocaleDateString("en-GB", { dateStyle: "short" });
+		return this.expiryDate.toLocaleDateString("en-GB", {day: '2-digit', month: '2-digit', year: '2-digit'});
 	}
 }
 
