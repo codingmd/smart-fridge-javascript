@@ -5,6 +5,7 @@ class Fridge {
 
   signalDoorOpened() {
     this.fridgeDoorOpened = true;
+    this.reduceItemExpiry();
     return this.fridgeDoorOpened;
   }
 
@@ -38,5 +39,15 @@ class Fridge {
     }
     return "item not in fridge";
   }
+
+  reduceItemExpiry() {
+    for (let i = 0; i < this.items.length; i++) {
+      if (this.items[i].condition === "sealed") {
+        // console.log(this.items[i].expiry);
+        this.items[i].expiry.setHours(this.items[i].expiry.getHours() - 1);
+      }
+    }
+  }
 }
+
 module.exports = Fridge;

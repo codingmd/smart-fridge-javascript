@@ -11,11 +11,11 @@ class Item {
 		const month = expiry.slice(3, 5) - 1;
 		const year = "20" + expiry.slice(6, 8);
 
-		this.expiryDate = new Date(year, month, day);
+		this.expiry = new Date(year, month, day);
 	}
 
 	getExpiry() {
-		return this.expiryDate.toLocaleDateString("en-GB", {day: '2-digit', month: '2-digit', year: '2-digit'});
+		return this.expiry.toLocaleDateString("en-GB", { day: '2-digit', month: '2-digit', year: '2-digit' });
 	}
 }
 
