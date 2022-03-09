@@ -43,9 +43,10 @@ class Fridge {
   reduceItemExpiry() {
     for (let i = 0; i < this.items.length; i++) {
       if (this.items[i].condition === "sealed") {
-        // console.log(this.items[i].expiry);
         this.items[i].expiry.setHours(this.items[i].expiry.getHours() - 1);
-      }
+      } else if (this.items[i].condition === "opened") {
+        this.items[i].expiry.setHours(this.items[i].expiry.getHours() - 5);
+      } 
     }
   }
 }

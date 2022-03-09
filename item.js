@@ -1,17 +1,17 @@
 class Item {
-	constructor(name, expiry, condition) {
+	constructor(name, expiryString, condition) {
 		this.name = name;
-		this.expiry = this.setExpiryDate(expiry);
+		this.expiry = this.setExpiryDate(expiryString);
 		this.condition = condition;
 		this.scannedTime = null;
 	}
 
-	setExpiryDate(expiry) {
-		const day = expiry.slice(0, 2);
-		const month = expiry.slice(3, 5) - 1;
-		const year = "20" + expiry.slice(6, 8);
+	setExpiryDate(expiryString) {
+		const day = expiryString.slice(0, 2);
+		const month = expiryString.slice(3, 5) - 1;
+		const year = "20" + expiryString.slice(6, 8);
 
-		this.expiry = new Date(year, month, day);
+		return new Date(year, month, day);
 	}
 
 	getExpiry() {
