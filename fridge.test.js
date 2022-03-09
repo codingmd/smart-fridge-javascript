@@ -107,12 +107,11 @@ describe("index", () => {
 		fridge.scanAddedItem(milk);
 		fridge.signalDoorClosed();
 
-		// fridge.signalDoorOpened();
-		// fridge.signalDoorClosed();
+		fridge.signalDoorOpened();
+		fridge.signalDoorClosed();
 
-		expect(milk.getExpiry()).toBe("21/09/21");
+		expect(milk.getExpiry()).toBe(new Date(2021, 8, 20, 23, 0, 0).toLocaleDateString("en-GB", {day: '2-digit', month: '2-digit', year: '2-digit'}));
 	});
-
 	// it("displays items in fridge", () => {
 	// 	const milk = new Item("milk", "21/10/21", "sealed");
 	// 	const butter = new Item("butter", "21/10/21", "sealed");

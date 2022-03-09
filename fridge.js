@@ -28,8 +28,7 @@ class Fridge {
   }
 
   setCurrentDate() {
-    const currentTime = new Date().toLocaleTimeString();
-    console.log(currentTime);
+    const currentTime = new Date().toLocaleDateString('en-GB');
     return currentTime;
   }
 
