@@ -42,11 +42,14 @@ class Fridge {
 
   reduceItemExpiry() {
     for (let i = 0; i < this.items.length; i++) {
-      if (this.items[i].condition === "sealed") {
-        this.items[i].expiry.setHours(this.items[i].expiry.getHours() - 1);
-      } else if (this.items[i].condition === "opened") {
-        this.items[i].expiry.setHours(this.items[i].expiry.getHours() - 5);
-      } 
+      switch(this.items[i].condition) {
+        case "sealed":
+          this.items[i].expiry.setHours(this.items[i].expiry.getHours() - 1);
+          break;
+        case "opened":
+          this.items[i].expiry.setHours(this.items[i].expiry.getHours() - 5);
+          break;
+      }
     }
   }
 }
