@@ -102,15 +102,17 @@ describe("index", () => {
 	it("when the door is opened the expiry of all items is reduced by 1 hour or 5 hours depending on condition", () => {
 		const fridge = new Fridge();
 		const milk = new Item("milk", "21/09/21", "opened");
+		const butter = new Item("butter", "15/09/21", "sealed");
 
 		fridge.signalDoorOpened();
 		fridge.scanAddedItem(milk);
+		fridge.scanAddedItem(butter);
 		fridge.signalDoorClosed();
 
 		fridge.signalDoorOpened();
 		fridge.signalDoorClosed();
 
-		expect(milk.getExpiry()).toBe(new Date(2021, 8, 20, 19, 0, 0).toLocaleDateString("en-GB", { day: '2-digit', month: '2-digit', year: '2-digit' }));
+		expect(milk.expiry).toStrictEqual(new Date(2021, 8, 20, 19, 0, 0));
 	});
 	// it("displays items in fridge", () => {
 	// 	const milk = new Item("milk", "21/10/21", "sealed");
