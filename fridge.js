@@ -2,6 +2,8 @@ class Fridge {
   itemCount = 0;
   items = [];
   fridgeDoorOpened = false;
+  expiredItemsArray = [];
+  formattedDisplayArray = [];
 
   signalDoorOpened() {
     this.fridgeDoorOpened = true;
@@ -42,7 +44,7 @@ class Fridge {
 
   reduceItemExpiry() {
     for (let i = 0; i < this.items.length; i++) {
-      switch(this.items[i].condition) {
+      switch (this.items[i].condition) {
         case "sealed":
           this.items[i].expiry.setHours(this.items[i].expiry.getHours() - 1);
           break;
@@ -52,6 +54,20 @@ class Fridge {
       }
     }
   }
-}
+  expiredOrNot() {
+    for (let i = 0; i < this.items.length; i++) {
+      if (this.items[i].expiry < new Date()) {
+        this.expiredItemsArray.push(this.items[i].name);
+      } else {
+        this.formattedDisplayArray.push(this.items[i].name + ': ' + 'x days remaining')
+      }
+    };
+  };
+
+  displayItems() {
+    return 'Expired: ' + this.expiredItemsArray.join(', ') + '\r\n' + this.formattedDisplayArray.join("\r\n");
+  }
+
+};
 
 module.exports = Fridge;
