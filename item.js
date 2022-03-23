@@ -4,6 +4,7 @@ class Item {
 		this.expiry = this.setExpiryDate(expiryString);
 		this.condition = condition;
 		this.scannedTime = null;
+		this.daysLeftToEat = this.daysToExpiry()
 	}
 
 	setExpiryDate(expiryString) {
@@ -17,6 +18,8 @@ class Item {
 	getExpiry() {
 		return this.expiry.toLocaleDateString("en-GB", { day: '2-digit', month: '2-digit', year: '2-digit' });
 	}
+
+	daysToExpiry() {return this.expiry - new Date()}
 }
 
 module.exports = Item;

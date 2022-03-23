@@ -119,7 +119,7 @@ describe("index", () => {
 		const fridge = new Fridge();
 		const milk = new Item("milk", "21/09/21", "opened");
 		const butter = new Item("butter", "15/09/21", "sealed");
-		const yoghurt = new Item("yoghurt", "24/04/2022", "sealed");
+		const yoghurt = new Item("yoghurt", "24/04/22", "sealed");
 		
 
 		fridge.signalDoorOpened();
@@ -127,15 +127,20 @@ describe("index", () => {
 		fridge.scanAddedItem(butter);
 		fridge.scanAddedItem(yoghurt);
 		fridge.expiredOrNot();
-		console.log(fridge.expiredItemsArray);
-		console.log(fridge.formattedDisplayArray);
-		console.log(yoghurt.expiry);
-		console.log(new Date());
 		expect(fridge.expiredItemsArray).toStrictEqual(["milk", "butter"]);
-		expect(fridge.formattedDisplayArray).toStrictEqual(["yoghurt"]);
-	
+		expect(fridge.formattedDisplayArray).toStrictEqual(["yoghurt: x days remaining"]);
 	});
 
+	it("returns the number of days left till expiry", () => {
+		const fridge = new Fridge();
+		const testExpiryDate = new Date() + 10;
+		const yoghurt = new Item("yoghurt", testExpiryDate, "sealed");
+
+		fridge.scanAddedItem(yoghurt);
+		console.log(yoghurt.daysLeftToEat);
+
+		expect(yoghurt.daysLeftToEat).toBe(10);
+	})
 	// it("provides a formatted display to view the contents and their remaining expiry with the following order", () => {
 	// 	const fridge = new Fridge();
 	// 	const milk = new Item("milk", "21/09/21", "opened");
