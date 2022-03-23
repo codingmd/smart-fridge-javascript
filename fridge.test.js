@@ -133,7 +133,19 @@ describe("index", () => {
 
 	it("returns the number of days left till expiry", () => {
 		const fridge = new Fridge();
-		const testExpiryDate = new Date() + 10;
+
+		let today = new Date();
+		let todayAdd10days = new Date();
+		todayAdd10days.setDate(today.getDate() + 10)
+		let dd = String(todayAdd10days.getDate());
+		let mm = String(todayAdd10days.getMonth() + 1);
+		let yyyy = todayAdd10days.getFullYear();
+
+		const testExpiryDate = dd + '/' + mm + '/' + yyyy;
+
+		console.log("Date = " + testExpiryDate)
+
+
 		const yoghurt = new Item("yoghurt", testExpiryDate, "sealed");
 
 		fridge.scanAddedItem(yoghurt);
