@@ -115,37 +115,44 @@ describe("index", () => {
 		expect(milk.expiry).toStrictEqual(new Date(2021, 8, 20, 19, 0, 0));
 	});
 
-	it("displays expired items", () => {
+	it("pushes expired items to expiredItemsArray", () => {
 		const fridge = new Fridge();
 		const milk = new Item("milk", "21/09/21", "opened");
 		const butter = new Item("butter", "15/09/21", "sealed");
+		const yoghurt = new Item("yoghurt", "24/04/2022", "sealed");
 		
 
 		fridge.signalDoorOpened();
 		fridge.scanAddedItem(milk);
 		fridge.scanAddedItem(butter);
+		fridge.scanAddedItem(yoghurt);
 		fridge.expiredOrNot();
-		expect(['milk', 'butter']);
+		console.log(fridge.expiredItemsArray);
+		console.log(fridge.formattedDisplayArray);
+		console.log(yoghurt.expiry);
+		console.log(new Date());
+		expect(fridge.expiredItemsArray).toStrictEqual(["milk", "butter"]);
+		expect(fridge.formattedDisplayArray).toStrictEqual(["yoghurt"]);
 	
 	});
 
-	it("provides a formatted display to view the contents and their remaining expiry with the following order", () => {
-		const fridge = new Fridge();
-		const milk = new Item("milk", "21/09/21", "opened");
-		const butter = new Item("butter", "15/09/21", "sealed");
-		const yoghurt = new Item("yoghurt", "21/04/22", "sealed");
-		const cheese = new Item("cheese", "06/04/22", "sealed");
+	// it("provides a formatted display to view the contents and their remaining expiry with the following order", () => {
+	// 	const fridge = new Fridge();
+	// 	const milk = new Item("milk", "21/09/21", "opened");
+	// 	const butter = new Item("butter", "15/09/21", "sealed");
+	// 	const yoghurt = new Item("yoghurt", "21/04/22", "sealed");
+	// 	const cheese = new Item("cheese", "06/04/22", "sealed");
 
-		fridge.signalDoorOpened();
-		fridge.scanAddedItem(milk);
-		fridge.scanAddedItem(butter);
-		fridge.scanAddedItem(yoghurt);
-		fridge.scanAddedItem(cheese);
-		fridge.expiredOrNot();
-		console.log(fridge.displayItems());
+	// 	fridge.signalDoorOpened();
+	// 	fridge.scanAddedItem(milk);
+	// 	fridge.scanAddedItem(butter);
+	// 	fridge.scanAddedItem(yoghurt);
+	// 	fridge.scanAddedItem(cheese);
+	// 	fridge.expiredOrNot();
+	// 	console.log(fridge.displayItems());
 
-		expect('Expired: milk, Expired: butter');
-	})
+	// 	expect('Expired: milk, Expired: butter');
+	// })
 
 	// it("displays items in fridge", () => {
 	// 	const milk = new Item("milk", "21/10/21", "sealed");
