@@ -120,7 +120,6 @@ describe("index", () => {
 		const milk = new Item("milk", "21/09/21", "opened");
 		const butter = new Item("butter", "15/09/21", "sealed");
 		const yoghurt = new Item("yoghurt", "24/04/22", "sealed");
-		
 
 		fridge.signalDoorOpened();
 		fridge.scanAddedItem(milk);
@@ -128,7 +127,9 @@ describe("index", () => {
 		fridge.scanAddedItem(yoghurt);
 		fridge.expiredOrNot();
 		expect(fridge.expiredItemsArray).toStrictEqual(["milk", "butter"]);
-		expect(fridge.formattedDisplayArray).toStrictEqual(["yoghurt: x days remaining"]);
+		expect(fridge.formattedDisplayArray).toStrictEqual([
+			"yoghurt: x days remaining",
+		]);
 	});
 
 	it("returns the number of days left till expiry", () => {
@@ -136,24 +137,21 @@ describe("index", () => {
 
 		let today = new Date();
 		let todayAdd10days = new Date();
-		todayAdd10days.setDate(today.getDate() + 10)
+		todayAdd10days.setDate(today.getDate() + 10);
 		let dd = String(todayAdd10days.getDate());
 		let mm = String(todayAdd10days.getMonth() + 1);
 		let yyyy = todayAdd10days.getFullYear();
 
-		const testExpiryDate = dd + '/' + mm + '/' + yyyy;
+		const testExpiryDate = dd + "/" + mm + "/" + yyyy;
 
-		console.log("Date = " + testExpiryDate)
-
+		console.log("Date = " + testExpiryDate);
 
 		const yoghurt = new Item("yoghurt", testExpiryDate, "sealed");
 
 		fridge.scanAddedItem(yoghurt);
-		console.log(yoghurt.expiry);
-		console.log(yoghurt.daysLeftToEat);
 
 		expect(yoghurt.daysLeftToEat).toBe(10);
-	})
+	});
 	// it("provides a formatted display to view the contents and their remaining expiry with the following order", () => {
 	// 	const fridge = new Fridge();
 	// 	const milk = new Item("milk", "21/09/21", "opened");

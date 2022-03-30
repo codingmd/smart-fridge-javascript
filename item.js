@@ -4,7 +4,7 @@ class Item {
 		this.expiry = this.setExpiryDate(expiryString);
 		this.condition = condition;
 		this.scannedTime = null;
-		this.daysLeftToEat = this.daysToExpiry()
+		this.daysLeftToEat = this.daysToExpiry();
 	}
 
 	setExpiryDate(expiryString) {
@@ -13,17 +13,25 @@ class Item {
 		//validate year format
 		let year = expiryString.slice(6);
 		if (year.length < 4) {
-			year = "20" + year
+			year = "20" + year;
 		}
-		console.log(year);
+
 		return new Date(year, month, day);
 	}
 
 	getExpiry() {
-		return this.expiry.toLocaleDateString("en-GB", { day: '2-digit', month: '2-digit', year: '2-digit' });
+		return this.expiry.toLocaleDateString("en-GB", {
+			day: "2-digit",
+			month: "2-digit",
+			year: "2-digit",
+		});
 	}
 
-	daysToExpiry() {return this.expiry - new Date()}
+	daysToExpiry() {
+		let itemExpiry = this.expiry;
+		itemExpiry.setHours(itemExpiry - new Date().getHours());
+		return this.itemExpiry;
+	}
 }
 
 module.exports = Item;
