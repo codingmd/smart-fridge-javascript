@@ -10,8 +10,12 @@ class Item {
 	setExpiryDate(expiryString) {
 		const day = expiryString.slice(0, 2);
 		const month = expiryString.slice(3, 5) - 1;
-		const year = "20" + expiryString.slice(6, 8);
-
+		//validate year format
+		let year = expiryString.slice(6);
+		if (year.length < 4) {
+			year = "20" + year
+		}
+		console.log(year);
 		return new Date(year, month, day);
 	}
 

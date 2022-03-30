@@ -149,6 +149,7 @@ describe("index", () => {
 		const yoghurt = new Item("yoghurt", testExpiryDate, "sealed");
 
 		fridge.scanAddedItem(yoghurt);
+		console.log(yoghurt.expiry);
 		console.log(yoghurt.daysLeftToEat);
 
 		expect(yoghurt.daysLeftToEat).toBe(10);
