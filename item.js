@@ -28,9 +28,11 @@ class Item {
 	}
 
 	daysToExpiry() {
-		let itemExpiry = this.expiry;
-		itemExpiry.setHours(itemExpiry - new Date().getHours());
-		return this.itemExpiry;
+		let currentDate = new Date();
+		let differenceInTime = this.expiry.getTime() - currentDate.getTime();
+		console.log(this.expiry.getTime(), currentDate.getTime());
+		let differenceInDays = differenceInTime / (1000 * 3600 * 24);
+		return differenceInDays;
 	}
 }
 
