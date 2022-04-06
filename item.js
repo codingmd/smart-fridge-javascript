@@ -10,14 +10,13 @@ class Item {
 	setExpiryDate(expiryString) {
 		let expiryArray = expiryString.split("/");
 		const day = expiryArray[0];
-		const month = expiryArray[1];
+		const month = expiryArray[1] - 1;
 		//validate year format
 		let year = expiryArray[2];
-		console.log(year);
 		if (year.length < 4) {
 			year = "20" + year;
 		}
-		console.log(year);
+
 		return new Date(year, month, day);
 	}
 
@@ -33,10 +32,11 @@ class Item {
 		let currentDate = new Date();
 		let currentTime = currentDate.getTime();
 		let expiryTime = this.expiry.getTime();
+
 		let differenceInTime = Math.abs(expiryTime - currentTime);
 		let differenceInDays = differenceInTime / (1000 * 3600 * 24);
-		console.log(currentTime, expiryTime, differenceInTime, differenceInDays);
-		return differenceInDays;
+
+		return Math.ceil(differenceInDays);
 	}
 }
 

@@ -136,18 +136,18 @@ describe("index", () => {
 		const fridge = new Fridge();
 
 		let today = new Date();
-		let todayAdd10days = new Date();
+		let todayAdd10days = today;
 		todayAdd10days.setDate(today.getDate() + 10);
+
 		let dd = String(todayAdd10days.getDate());
 		let mm = String(todayAdd10days.getMonth() + 1);
 		let yyyy = todayAdd10days.getFullYear();
-
 		const testExpiryDate = dd + "/" + mm + "/" + yyyy;
-		console.log(testExpiryDate);
-		
-		const yoghurt = new Item("yoghurt", testExpiryDate, "sealed");
 
+		const yoghurt = new Item("yoghurt", testExpiryDate, "sealed");
+		fridge.signalDoorOpened();
 		fridge.scanAddedItem(yoghurt);
+		fridge.signalDoorClosed();
 
 		expect(yoghurt.daysLeftToEat).toStrictEqual(10);
 	});

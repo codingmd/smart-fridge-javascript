@@ -11,7 +11,7 @@
 - verify item has been added to fridge (done)
 - only items in fridge can be removed from fridge (done)
 - verify string confirmation that item cannot be removed if not in fridge (done)
-- working out time left on item before expiry
+- working out time left on item before expiry(done)
 - opening the fridge and how it affects all items in fridge
 - display formatted listing of items with expiry information, ordered by expiry(in progress/commented)
 - signal door has been opened (done)
