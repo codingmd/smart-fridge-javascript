@@ -143,7 +143,8 @@ describe("index", () => {
 		let yyyy = todayAdd10days.getFullYear();
 
 		const testExpiryDate = dd + "/" + mm + "/" + yyyy;
-
+		console.log(testExpiryDate);
+		
 		const yoghurt = new Item("yoghurt", testExpiryDate, "sealed");
 
 		fridge.scanAddedItem(yoghurt);
