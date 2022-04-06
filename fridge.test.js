@@ -6,7 +6,9 @@ describe("index", () => {
 		const milk = new Item("milk", "21/10/21", "sealed");
 		const fridge = new Fridge();
 
+		fridge.signalDoorOpened();
 		fridge.scanAddedItem(milk);
+		fridge.signalDoorClosed();
 
 		expect(fridge.getItemCount()).toBe(1);
 	});
@@ -16,8 +18,10 @@ describe("index", () => {
 		const butter = new Item("butter", "21/10/21", "sealed");
 		const fridge = new Fridge();
 
+		fridge.signalDoorOpened();
 		fridge.scanAddedItem(milk);
 		fridge.scanAddedItem(butter);
+		fridge.signalDoorClosed();
 
 		expect(fridge.getItemCount()).toBe(2);
 	});
@@ -26,7 +30,9 @@ describe("index", () => {
 		const milk = new Item("milk", "21/10/21", "sealed");
 		const fridge = new Fridge();
 
+		fridge.signalDoorOpened();
 		fridge.scanAddedItem(milk);
+		fridge.signalDoorClosed();
 
 		expect(milk.scannedTime).not.toBe(null);
 	});
@@ -36,9 +42,11 @@ describe("index", () => {
 		const butter = new Item("butter", "21/10/21", "sealed");
 		const fridge = new Fridge();
 
+		fridge.signalDoorOpened();
 		fridge.scanAddedItem(milk);
 		fridge.scanAddedItem(butter);
 		fridge.removeItemFromFridge(milk);
+		fridge.signalDoorClosed();
 
 		expect(fridge.getItemCount()).toBe(1);
 	});
@@ -47,7 +55,10 @@ describe("index", () => {
 		const milk = new Item("milk", "21/10/21", "sealed");
 		const fridge = new Fridge();
 
+		fridge.signalDoorOpened();
 		fridge.removeItemFromFridge(milk);
+		fridge.signalDoorClosed();
+
 		expect(fridge.getItemCount()).toBe(0);
 	});
 
@@ -56,8 +67,10 @@ describe("index", () => {
 		const milk = new Item("milk", "21/10/21", "sealed");
 		const butter = new Item("butter", "21/10/21", "sealed");
 
+		fridge.signalDoorOpened();
 		fridge.scanAddedItem(milk);
 		fridge.removeItemFromFridge(butter);
+		fridge.signalDoorClosed();
 
 		expect(fridge.getItemCount()).toBe(1);
 	});
@@ -67,7 +80,10 @@ describe("index", () => {
 		const milk = new Item("milk", "21/10/21", "sealed");
 		const butter = new Item("butter", "21/10/21", "sealed");
 
+		fridge.signalDoorOpened();
 		fridge.scanAddedItem(milk);
+		fridge.signalDoorClosed();
+
 		const resp = fridge.removeItemFromFridge(butter);
 
 		expect(resp).toBe("item not in fridge");
@@ -77,7 +93,10 @@ describe("index", () => {
 		const milk = new Item("milk", "21/10/21", "sealed");
 		const fridge = new Fridge();
 
+		fridge.signalDoorOpened();
 		fridge.scanAddedItem(milk);
+		fridge.signalDoorClosed();
+
 		expect(fridge.isItemInFridge(milk)).toBe(true);
 	});
 
@@ -86,6 +105,7 @@ describe("index", () => {
 		const milk = new Item("milk", "21/10/21", "sealed");
 		fridge.signalDoorOpened();
 		fridge.scanAddedItem(milk);
+
 		expect(fridge.signalDoorOpened()).toBe(true);
 	});
 
@@ -125,6 +145,8 @@ describe("index", () => {
 		fridge.scanAddedItem(milk);
 		fridge.scanAddedItem(butter);
 		fridge.scanAddedItem(yoghurt);
+		fridge.signalDoorClosed();
+
 		fridge.expiredOrNot();
 		expect(fridge.expiredItemsArray).toStrictEqual(["milk", "butter"]);
 		expect(fridge.formattedDisplayArray).toStrictEqual([
@@ -145,29 +167,32 @@ describe("index", () => {
 		const testExpiryDate = dd + "/" + mm + "/" + yyyy;
 
 		const yoghurt = new Item("yoghurt", testExpiryDate, "sealed");
+
 		fridge.signalDoorOpened();
 		fridge.scanAddedItem(yoghurt);
 		fridge.signalDoorClosed();
 
 		expect(yoghurt.daysLeftToEat).toStrictEqual(10);
 	});
-	// it("provides a formatted display to view the contents and their remaining expiry with the following order", () => {
-	// 	const fridge = new Fridge();
-	// 	const milk = new Item("milk", "21/09/21", "opened");
-	// 	const butter = new Item("butter", "15/09/21", "sealed");
-	// 	const yoghurt = new Item("yoghurt", "21/04/22", "sealed");
-	// 	const cheese = new Item("cheese", "06/04/22", "sealed");
+	it("provides a formatted display to view the contents and their remaining expiry with the following order", () => {
+		const fridge = new Fridge();
+		const milk = new Item("milk", "21/09/21", "opened");
+		const butter = new Item("butter", "15/09/21", "sealed");
+		const yoghurt = new Item("yoghurt", "21/04/22", "sealed");
+		const cheese = new Item("cheese", "06/04/22", "sealed");
 
-	// 	fridge.signalDoorOpened();
-	// 	fridge.scanAddedItem(milk);
-	// 	fridge.scanAddedItem(butter);
-	// 	fridge.scanAddedItem(yoghurt);
-	// 	fridge.scanAddedItem(cheese);
-	// 	fridge.expiredOrNot();
-	// 	console.log(fridge.displayItems());
+		fridge.signalDoorOpened();
+		fridge.scanAddedItem(milk);
+		fridge.scanAddedItem(butter);
+		fridge.scanAddedItem(yoghurt);
+		fridge.scanAddedItem(cheese);
+		fridge.signalDoorClosed();
 
-	// 	expect('Expired: milk, Expired: butter');
-	// })
+		fridge.expiredOrNot();
+		console.log(fridge.displayItems());
+
+		expect("Expired: milk, Expired: butter");
+	});
 
 	// it("displays items in fridge", () => {
 	// 	const milk = new Item("milk", "21/10/21", "sealed");
