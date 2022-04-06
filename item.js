@@ -29,9 +29,11 @@ class Item {
 
 	daysToExpiry() {
 		let currentDate = new Date();
-		let differenceInTime = this.expiry.getTime() - currentDate.getTime();
-		console.log(this.expiry.getTime(), currentDate.getTime());
+		let currentTime = currentDate.getTime();
+		let expiryTime = this.expiry.getTime();
+		let differenceInTime = Math.abs(expiryTime - currentTime);
 		let differenceInDays = differenceInTime / (1000 * 3600 * 24);
+		console.log(currentTime, expiryTime, differenceInTime, differenceInDays);
 		return differenceInDays;
 	}
 }

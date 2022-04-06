@@ -144,13 +144,11 @@ describe("index", () => {
 
 		const testExpiryDate = dd + "/" + mm + "/" + yyyy;
 
-		console.log("Date = " + testExpiryDate);
-
 		const yoghurt = new Item("yoghurt", testExpiryDate, "sealed");
 
 		fridge.scanAddedItem(yoghurt);
 
-		expect(yoghurt.daysLeftToEat).toBe(10);
+		expect(yoghurt.daysLeftToEat).toStrictEqual(10);
 	});
 	// it("provides a formatted display to view the contents and their remaining expiry with the following order", () => {
 	// 	const fridge = new Fridge();
