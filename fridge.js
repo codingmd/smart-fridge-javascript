@@ -71,9 +71,10 @@ class Fridge {
 	}
 
 	displayItems() {
+	
 		return (
-			"Expired: " +
-			this.expiredItemsArray.join(", ") +
+			"EXPIRED: " +
+			this.expiredItemsArray.join("\r\nEXPIRED: ") +
 			"\r\n" +
 			this.formattedDisplayArray.join("\r\n")
 		);

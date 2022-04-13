@@ -150,7 +150,7 @@ describe("index", () => {
 		fridge.expiredOrNot();
 		expect(fridge.expiredItemsArray).toStrictEqual(["milk", "butter"]);
 		expect(fridge.formattedDisplayArray).toStrictEqual([
-			"yoghurt: 11              days remaining",
+			"yoghurt: 11 days remaining",
 		]);
 	});
 
@@ -192,7 +192,7 @@ describe("index", () => {
 		console.log(fridge.displayItems());
 
 		expect(fridge.displayItems()).toBe(
-			"Expired: milk Expired: butter Expired: cheese\r\nyoghurt: 8 days remaining"
+			"EXPIRED: milk\r\nEXPIRED: butter\r\nEXPIRED: cheese\r\nyoghurt: 8 days remaining"
 		);
 	});
 });
