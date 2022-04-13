@@ -15,7 +15,8 @@
 - signal door has been opened (done)
 - signal door has been closed (done)
 - when the door is opened the expiry of all items is reduced by 1 hour or 5 hours depending on condition (done)
-- display formatted listing of items with expiry information(done)
+- display formatted listing of items with expiry information (done)
+- ordered non-expired items by expiry/ remaining days (done)
 
-- ordered non-expired items by expiry/ remaining days
 - to add functionality to set current date on tests
+- simulate day over
