@@ -68,10 +68,11 @@ class Fridge {
 				);
 			}
 		}
+
+		this.formattedDisplayArray.sort((a, b) => (a.expiry > b.expiry ? 1 : -1));
 	}
 
 	displayItems() {
-	
 		return (
 			"EXPIRED: " +
 			this.expiredItemsArray.join("\r\nEXPIRED: ") +
