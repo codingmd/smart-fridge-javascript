@@ -150,7 +150,7 @@ describe("index", () => {
 		fridge.expiredOrNot();
 		expect(fridge.expiredItemsArray).toStrictEqual(["milk", "butter"]);
 		expect(fridge.formattedDisplayArray).toStrictEqual([
-			"yoghurt: x days remaining",
+			"yoghurt: 11              days remaining",
 		]);
 	});
 
@@ -191,20 +191,8 @@ describe("index", () => {
 		fridge.expiredOrNot();
 		console.log(fridge.displayItems());
 
-		expect("Expired: milk, Expired: butter");
+		expect(fridge.displayItems()).toBe(
+			"Expired: milk Expired: butter Expired: cheese\r\nyoghurt: 8 days remaining"
+		);
 	});
-
-	// it("displays items in fridge", () => {
-	// 	const milk = new Item("milk", "21/10/21", "sealed");
-	// 	const butter = new Item("butter", "21/10/21", "sealed");
-	// 	const fridge = new Fridge();
-
-	// 	fridge.scanAddedItem(milk);
-	// 	fridge.scanAddedItem(butter);
-
-	// 	expect(fridge.showDisplay()).toBe([
-	// 		{ name: "milk", expiry: "21/10/21", condition: "sealed" },
-	// 		{ name: "butter", expiry: "21/10/21", condition: "sealed" },
-	// 	]);
-	// });
 });
