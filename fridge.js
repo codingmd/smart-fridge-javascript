@@ -3,6 +3,7 @@ class Fridge {
 	items = [];
 	fridgeDoorOpened = false;
 	expiredItemsArray = [];
+	inDateItemsArray = [];
 	formattedDisplayArray = [];
 
 	signalDoorOpened() {
@@ -60,16 +61,20 @@ class Fridge {
 			if (this.items[i].expiry < new Date()) {
 				this.expiredItemsArray.push(this.items[i].name);
 			} else {
-				this.formattedDisplayArray.push(
-					this.items[i].name +
-						": " +
-						this.items[i].daysLeftToEat +
-						" days remaining"
-				);
+				this.inDateItemsArray.push(this.items[i]);
 			}
 		}
 
-		this.formattedDisplayArray.sort((a, b) => (a.expiry > b.expiry ? 1 : -1));
+		this.inDateItemsArray.sort((a, b) => (a.expiry > b.expiry ? 1 : -1));
+
+		for (let i = 0; i < this.inDateItemsArray.length; i++) {
+		this.formattedDisplayArray.push(
+			this.inDateItemsArray[i].name +
+				": " +
+				this.inDateItemsArray[i].daysLeftToEat +
+				" days remaining"
+		);
+		}
 	}
 
 	displayItems() {
