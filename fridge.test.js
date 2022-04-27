@@ -1,6 +1,17 @@
 const Item = require("./item.js");
 const Fridge = require("./fridge.js");
 
+		const testDate = (daysPlusMinus) => {
+		let today = new Date();
+		let testDate = today;
+		testDate.setDate(today.getDate() + daysPlusMinus);
+
+		let dd = String(todayAdd10days.getDate());
+		let mm = String(todayAdd10days.getMonth() + 1);
+		let yyyy = todayAdd10days.getFullYear();
+		const testExpiryDate = dd + "/" + mm + "/" + yyyy;
+		}
+
 describe("index", () => {
 	it("when 1 item added to fridge then fridge count is 1 ", () => {
 		const milk = new Item("milk", "21/10/21", "sealed");
@@ -165,16 +176,16 @@ describe("index", () => {
 	it("returns the number of days left till expiry", () => {
 		const fridge = new Fridge();
 
-		let today = new Date();
-		let todayAdd10days = today;
-		todayAdd10days.setDate(today.getDate() + 10);
+		// let today = new Date();
+		// let todayAdd10days = today;
+		// todayAdd10days.setDate(today.getDate() + 10);
 
-		let dd = String(todayAdd10days.getDate());
-		let mm = String(todayAdd10days.getMonth() + 1);
-		let yyyy = todayAdd10days.getFullYear();
-		const testExpiryDate = dd + "/" + mm + "/" + yyyy;
+		// let dd = String(todayAdd10days.getDate());
+		// let mm = String(todayAdd10days.getMonth() + 1);
+		// let yyyy = todayAdd10days.getFullYear();
+		// const testExpiryDate = dd + "/" + mm + "/" + yyyy;
 
-		const yoghurt = new Item("yoghurt", testExpiryDate, "sealed");
+		const yoghurt = new Item("yoghurt", testDate(10), "sealed");
 
 		fridge.signalDoorOpened();
 		fridge.scanAddedItem(yoghurt);
@@ -184,32 +195,31 @@ describe("index", () => {
 	});
 
 	it("provides a formatted display to view the contents and their remaining expiry with the following order", () => {
-		let expiryDate = new Date();
 
 		const fridge = new Fridge();
 		const milk = new Item(
 			"milk",
-			expiryDate.setDate(today.getDate() - 5),
+			testDate(-5),
 			"opened"
 		);
 		const butter = new Item(
 			"butter",
-			expiryDate.setDate(today.getDate() - 10),
+			testDate(-10),
 			"sealed"
 		);
 		const yoghurt = new Item(
 			"yoghurt",
-			expiryDate.setDate(today.getDate() + 2),
+			testDate(2),
 			"sealed"
 		);
 		const cheese = new Item(
 			"cheese",
-			expiryDate.setDate(today.getDate() - 8),
+			testDate(-8),
 			"sealed"
 		);
 		const tofu = new Item(
 			"tofu",
-			expiryDate.setDate(today.getDate() + 10),
+			testDate(10),
 			"sealed"
 		);
 
