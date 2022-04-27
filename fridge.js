@@ -68,11 +68,17 @@ class Fridge {
 		this.inDateItemsArray.sort((a, b) => (a.expiry > b.expiry ? 1 : -1));
 
 		for (let i = 0; i < this.inDateItemsArray.length; i++) {
+			let daysremaining = "";
+			if (this.inDateItemsArray[i].daysLeftToEat < 2) {
+				daysremaining = " day remaining";
+			} else {
+				daysremaining = " days remaining";
+			}
 			this.formattedDisplayArray.push(
 				this.inDateItemsArray[i].name +
 					": " +
 					this.inDateItemsArray[i].daysLeftToEat +
-					" days remaining"
+					daysremaining
 			);
 		}
 	}

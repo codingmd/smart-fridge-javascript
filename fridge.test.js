@@ -1,16 +1,16 @@
 const Item = require("./item.js");
 const Fridge = require("./fridge.js");
 
-		const testDate = (daysPlusMinus) => {
-		let today = new Date();
-		let testDate = today;
-		testDate.setDate(today.getDate() + daysPlusMinus);
+const testDate = (daysPlusMinus) => {
+	let today = new Date();
+	let testDate = today;
+	testDate.setDate(today.getDate() + daysPlusMinus);
 
-		let dd = String(todayAdd10days.getDate());
-		let mm = String(todayAdd10days.getMonth() + 1);
-		let yyyy = todayAdd10days.getFullYear();
-		const testExpiryDate = dd + "/" + mm + "/" + yyyy;
-		}
+	let dd = String(testDate.getDate());
+	let mm = String(testDate.getMonth() + 1);
+	let yyyy = testDate.getFullYear();
+	return dd + "/" + mm + "/" + yyyy;
+};
 
 describe("index", () => {
 	it("when 1 item added to fridge then fridge count is 1 ", () => {
@@ -195,33 +195,12 @@ describe("index", () => {
 	});
 
 	it("provides a formatted display to view the contents and their remaining expiry with the following order", () => {
-
 		const fridge = new Fridge();
-		const milk = new Item(
-			"milk",
-			testDate(-5),
-			"opened"
-		);
-		const butter = new Item(
-			"butter",
-			testDate(-10),
-			"sealed"
-		);
-		const yoghurt = new Item(
-			"yoghurt",
-			testDate(2),
-			"sealed"
-		);
-		const cheese = new Item(
-			"cheese",
-			testDate(-8),
-			"sealed"
-		);
-		const tofu = new Item(
-			"tofu",
-			testDate(10),
-			"sealed"
-		);
+		const milk = new Item("milk", testDate(-5), "opened");
+		const butter = new Item("butter", testDate(-10), "sealed");
+		const yoghurt = new Item("yoghurt", testDate(6), "sealed");
+		const cheese = new Item("cheese", testDate(1), "sealed");
+		const tofu = new Item("tofu", testDate(4), "sealed");
 
 		fridge.signalDoorOpened();
 		fridge.scanAddedItem(milk);
@@ -235,11 +214,11 @@ describe("index", () => {
 		console.log(fridge.displayItems());
 
 		expect(fridge.displayItems()).toBe(
-			"EXPIRED: milk\r\nEXPIRED: butter\r\ncheese: 1 days remaining\r\ntofu: 4 days remaining\r\nyoghurt: 6 days remaining"
+			"EXPIRED: milk\r\nEXPIRED: butter\r\ncheese: 1 day remaining\r\ntofu: 4 days remaining\r\nyoghurt: 6 days remaining"
 		);
 	});
 
-	it("simulates dy over by reducing expiry of all items by 24 hours", () => {
+	it("simulates day over by reducing expiry of all items by 24 hours", () => {
 		const fridge = new Fridge();
 		const milk = new Item("milk", "21/05/22", "opened");
 		const butter = new Item("butter", "03/05/22", "sealed");
