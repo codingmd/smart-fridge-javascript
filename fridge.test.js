@@ -206,4 +206,19 @@ describe("index", () => {
 			"EXPIRED: milk\r\nEXPIRED: butter\r\ncheese: 1 days remaining\r\ntofu: 4 days remaining\r\nyoghurt: 6 days remaining"
 		);
 	});
+
+	it("simulates dy over by reducing expiry of all items by 24 hours", () => {
+		const fridge = new Fridge();
+		const milk = new Item("milk", "21/05/22", "opened");
+		const butter = new Item("butter", "03/05/22", "sealed");
+
+		fridge.signalDoorOpened();
+		fridge.scanAddedItem(milk);
+		fridge.scanAddedItem(butter);
+		fridge.signalDoorClosed();
+
+		fridge.simulateDayOver()
+
+		expect(milk.expiry).toStrictEqual(new Date(2022, 4, 20, 24, 0, 0));
+	});
 });
