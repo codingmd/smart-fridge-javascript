@@ -184,12 +184,34 @@ describe("index", () => {
 	});
 
 	it("provides a formatted display to view the contents and their remaining expiry with the following order", () => {
+		let expiryDate = new Date();
+
 		const fridge = new Fridge();
-		const milk = new Item("milk", "21/09/21", "opened");
-		const butter = new Item("butter", "15/09/21", "sealed");
-		const yoghurt = new Item("yoghurt", "26/04/22", "sealed");
-		const cheese = new Item("cheese", "21/04/22", "sealed");
-		const tofu = new Item("tofu", "24/04/22", "sealed");
+		const milk = new Item(
+			"milk",
+			expiryDate.setDate(today.getDate() - 5),
+			"opened"
+		);
+		const butter = new Item(
+			"butter",
+			expiryDate.setDate(today.getDate() - 10),
+			"sealed"
+		);
+		const yoghurt = new Item(
+			"yoghurt",
+			expiryDate.setDate(today.getDate() + 2),
+			"sealed"
+		);
+		const cheese = new Item(
+			"cheese",
+			expiryDate.setDate(today.getDate() - 8),
+			"sealed"
+		);
+		const tofu = new Item(
+			"tofu",
+			expiryDate.setDate(today.getDate() + 10),
+			"sealed"
+		);
 
 		fridge.signalDoorOpened();
 		fridge.scanAddedItem(milk);
@@ -217,8 +239,8 @@ describe("index", () => {
 		fridge.scanAddedItem(butter);
 		fridge.signalDoorClosed();
 
-		fridge.simulateDayOver()
+		fridge.simulateDayOver();
 
-		expect(milk.expiry).toStrictEqual(new Date(2022, 4, 20, 24, 0, 0));
+		expect(milk.expiry).toStrictEqual(new Date(2022, 4, 20));
 	});
 });

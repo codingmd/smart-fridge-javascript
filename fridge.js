@@ -68,12 +68,12 @@ class Fridge {
 		this.inDateItemsArray.sort((a, b) => (a.expiry > b.expiry ? 1 : -1));
 
 		for (let i = 0; i < this.inDateItemsArray.length; i++) {
-		this.formattedDisplayArray.push(
-			this.inDateItemsArray[i].name +
-				": " +
-				this.inDateItemsArray[i].daysLeftToEat +
-				" days remaining"
-		);
+			this.formattedDisplayArray.push(
+				this.inDateItemsArray[i].name +
+					": " +
+					this.inDateItemsArray[i].daysLeftToEat +
+					" days remaining"
+			);
 		}
 	}
 
@@ -84,6 +84,12 @@ class Fridge {
 			"\r\n" +
 			this.formattedDisplayArray.join("\r\n")
 		);
+	}
+
+	simulateDayOver() {
+		for (let i = 0; i < this.items.length; i++) {
+			this.items[i].expiry.setHours(this.items[i].expiry.getHours() - 24);
+		}
 	}
 }
 
