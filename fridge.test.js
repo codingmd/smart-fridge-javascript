@@ -122,17 +122,15 @@ describe("index", () => {
 		fridge.signalDoorOpened();
 		fridge.signalDoorClosed();
 
-		expect(butter.expiry).toStrictEqual(new Date(2021, 9, 15, 23, 0, 0));
+		expect(butter.expiry).toStrictEqual(new Date(2021, 8, 14, 23, 0, 0));
 	});
 
-	it("when the door is opened the expiry of all items is reduced by 1 hour or 5 hours depending on condition", () => {
+	it("when the door is opened the expiry of all opened items is reduced by 5 hours", () => {
 		const fridge = new Fridge();
 		const milk = new Item("milk", "21/09/21", "opened");
-		const butter = new Item("butter", "15/09/21", "sealed");
 
 		fridge.signalDoorOpened();
 		fridge.scanAddedItem(milk);
-		fridge.scanAddedItem(butter);
 		fridge.signalDoorClosed();
 
 		fridge.signalDoorOpened();
