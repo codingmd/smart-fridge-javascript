@@ -158,6 +158,7 @@ describe("index", () => {
 		const cheese = new Item("cheese", testDate(1), "sealed");
 		const tofu = new Item("tofu", testDate(4), "sealed");
 
+		fridge.setCurrentDate();
 		fridge.signalDoorOpened();
 		fridge.scanAddedItem(milk);
 		fridge.scanAddedItem(butter);
@@ -168,6 +169,9 @@ describe("index", () => {
 
 		fridge.expiredOrNot();
 		console.log(fridge.displayItems());
+		console.log("fridge: " + fridge.currentDate);
+		console.log("milk: " + milk.expiry);
+		console.log("butter: " + butter.expiry);
 
 		expect(fridge.displayItems()).toBe(
 			"EXPIRED: milk\r\nEXPIRED: butter\r\ncheese: 1 day remaining\r\ntofu: 4 days remaining\r\nyoghurt: 6 days remaining"
@@ -194,5 +198,17 @@ describe("index", () => {
 		fridge.setCurrentDate("20/5/22");
 
 		expect(fridge.currentDate).toStrictEqual(new Date(2022, 4, 20));
+	});
+
+	it("item expiry is valid based on the setCurrentDate value", () => {
+		
+	});
+
+	it("item expiry is valid after simulateDayOver", () => {
+
+	});
+
+	it("item expiry is valid with the testDate()", () => {
+
 	});
 });

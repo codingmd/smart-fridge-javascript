@@ -5,6 +5,7 @@ class Fridge {
 	expiredItemsArray = [];
 	inDateItemsArray = [];
 	formattedDisplayArray = [];
+	currentDate = '';
 
 	signalDoorOpened() {
 		this.fridgeDoorOpened = true;
@@ -37,6 +38,9 @@ class Fridge {
 	// }
 
 	setCurrentDate(currentDateString) {
+		if (!currentDateString) {
+			this.currentDate = new Date()
+		} else {
 		let currentDateArray = currentDateString.split("/");
 		const day = currentDateArray[0];
 		const month = currentDateArray[1] - 1;
@@ -47,6 +51,7 @@ class Fridge {
 		}
 
 		this.currentDate = new Date(year, month, day);
+	}
 	}
 
 	removeItemFromFridge(item) {
@@ -71,7 +76,7 @@ class Fridge {
 
 	expiredOrNot() {
 		for (let i = 0; i < this.items.length; i++) {
-			if (this.items[i].expiry < new Date()) {
+			if (this.items[i].expiry < this.currentDate) {
 				this.expiredItemsArray.push(this.items[i].name);
 			} else {
 				this.inDateItemsArray.push(this.items[i]);
