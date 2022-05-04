@@ -111,6 +111,20 @@ describe("index", () => {
 	});
 
 	// split this test into 2 based on whether sealed or not sealed
+	it("when the door is opened the expiry of all sealed items is reduced by 1 hour", () => {
+		const fridge = new Fridge();
+		const butter = new Item("butter", "15/09/21", "sealed");
+
+		fridge.signalDoorOpened();
+		fridge.scanAddedItem(butter);
+		fridge.signalDoorClosed();
+
+		fridge.signalDoorOpened();
+		fridge.signalDoorClosed();
+
+		expect(butter.expiry).toStrictEqual(new Date(2021, 9, 15, 23, 0, 0));
+	});
+
 	it("when the door is opened the expiry of all items is reduced by 1 hour or 5 hours depending on condition", () => {
 		const fridge = new Fridge();
 		const milk = new Item("milk", "21/09/21", "opened");
