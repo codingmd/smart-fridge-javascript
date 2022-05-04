@@ -19,3 +19,5 @@
 - ordered non-expired items by expiry/ remaining days (done)
 - to add functionality to set current date on tests (done)
 - simulate day over (done)
+
+- add scannedTime back in related to current fridge time

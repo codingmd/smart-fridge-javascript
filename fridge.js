@@ -19,7 +19,7 @@ class Fridge {
 
 	scanAddedItem(item) {
 		this.itemCount++;
-		item.scannedTime = this.setCurrentDate();
+		// item.scannedTime = this.setCurrentDate();
 		this.items.push(item);
 	}
 
@@ -31,9 +31,22 @@ class Fridge {
 		return this.itemCount;
 	}
 
-	setCurrentDate() {
-		const currentTime = new Date().toLocaleDateString("en-GB");
-		return currentTime;
+	// setCurrentDate() {
+	// 	const currentTime = new Date().toLocaleDateString("en-GB");
+	// 	return currentTime;
+	// }
+
+	setCurrentDate(currentDateString) {
+		let currentDateArray = currentDateString.split("/");
+		const day = currentDateArray[0];
+		const month = currentDateArray[1] - 1;
+		//validate year format
+		let year = currentDateArray[2];
+		if (year.length < 4) {
+			year = "20" + year;
+		}
+
+		this.currentDate = new Date(year, month, day);
 	}
 
 	removeItemFromFridge(item) {

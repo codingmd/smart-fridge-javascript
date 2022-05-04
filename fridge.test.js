@@ -188,4 +188,11 @@ describe("index", () => {
 
 		expect(milk.expiry).toStrictEqual(new Date(2022, 4, 20));
 	});
+
+	it("sets the current date of the fridge to a specific date", () => {
+		const fridge = new Fridge();
+		fridge.setCurrentDate("20/5/22");
+
+		expect(fridge.currentDate).toStrictEqual(new Date(2022, 4, 20));
+	});
 });
