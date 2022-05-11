@@ -4,7 +4,7 @@ class Item {
 		this.expiry = this.setExpiryDate(expiryString);
 		this.condition = condition;
 		this.scannedTime = null;
-		this.daysLeftToEat = this.daysToExpiry();
+		// this.daysLeftToEat = this.daysToExpiry(fridgeDate);
 	}
 
 	setExpiryDate(expiryString) {
@@ -28,9 +28,8 @@ class Item {
 		});
 	}
 
-	daysToExpiry() {
-		let currentDate = new Date();
-		let currentTime = currentDate.getTime();
+	daysToExpiry(fridgeDate) {
+		let currentTime = fridgeDate.getTime();
 		let expiryTime = this.expiry.getTime();
 
 		let differenceInTime = Math.abs(expiryTime - currentTime);

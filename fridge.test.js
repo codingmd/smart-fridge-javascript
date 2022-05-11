@@ -31,7 +31,7 @@ describe("index", () => {
 	it("when 1 item is added the timestamp is recorded", () => {
 		const milk = new Item("milk", "21/10/21", "sealed");
 		const fridge = new Fridge();
-		fridge.setCurrentDate("23/01/2022")
+		fridge.setCurrentDate("23/01/2022");
 		fridge.signalDoorOpened();
 		fridge.scanAddedItem(milk);
 		fridge.signalDoorClosed();
@@ -140,6 +140,7 @@ describe("index", () => {
 
 	it("returns the number of days left till expiry", () => {
 		const fridge = new Fridge();
+		fridge.setCurrentDate();
 		const yoghurt = new Item("yoghurt", testDate(10), "sealed");
 
 		fridge.signalDoorOpened();
@@ -199,15 +200,9 @@ describe("index", () => {
 		expect(fridge.currentDate).toStrictEqual(new Date(2022, 4, 20));
 	});
 
-	it("item expiry is valid based on the setCurrentDate value", () => {
-		
-	});
+	it("item expiry is valid based on the setCurrentDate value", () => {});
 
-	it("item expiry is valid after simulateDayOver", () => {
+	it("item expiry is valid after simulateDayOver", () => {});
 
-	});
-
-	it("item expiry is valid with the testDate()", () => {
-
-	});
+	it("item expiry is valid with the testDate()", () => {});
 });
