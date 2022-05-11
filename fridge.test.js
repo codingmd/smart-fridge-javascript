@@ -31,7 +31,7 @@ describe("index", () => {
 	it("when 1 item is added the timestamp is recorded", () => {
 		const milk = new Item("milk", "21/10/21", "sealed");
 		const fridge = new Fridge();
-
+		fridge.setCurrentDate("23/01/2022")
 		fridge.signalDoorOpened();
 		fridge.scanAddedItem(milk);
 		fridge.signalDoorClosed();
@@ -110,7 +110,6 @@ describe("index", () => {
 		expect(fridge.signalDoorClosed()).toBe(false);
 	});
 
-	// split this test into 2 based on whether sealed or not sealed
 	it("when the door is opened the expiry of all sealed items is reduced by 1 hour", () => {
 		const fridge = new Fridge();
 		const butter = new Item("butter", "15/09/21", "sealed");
