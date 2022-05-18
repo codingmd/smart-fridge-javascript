@@ -38,7 +38,7 @@ class Fridge {
 	// }
 
 	setCurrentDate(currentDateString) {
-		if (!currentDateString === "") {
+		if (currentDateString) {
 			let currentDateArray = currentDateString.split("/");
 			const day = currentDateArray[0];
 			const month = currentDateArray[1] - 1;
@@ -50,6 +50,7 @@ class Fridge {
 
 			this.currentDate = new Date(year, month, day);
 		}
+		else this.currentDate = new Date()
 	}
 
 	removeItemFromFridge(item) {

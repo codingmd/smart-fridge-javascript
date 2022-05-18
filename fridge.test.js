@@ -158,7 +158,7 @@ describe("index", () => {
 		const cheese = new Item("cheese", testDate(1), "sealed");
 		const tofu = new Item("tofu", testDate(4), "sealed");
 
-		fridge.setCurrentDate();
+		fridge.setCurrentDate("12/05/22");
 		fridge.signalDoorOpened();
 		fridge.scanAddedItem(milk);
 		fridge.scanAddedItem(butter);
@@ -178,20 +178,21 @@ describe("index", () => {
 		);
 	});
 
-	it("simulates day over by reducing expiry of all items by 24 hours", () => {
-		const fridge = new Fridge();
-		const milk = new Item("milk", "21/05/22", "opened");
-		const butter = new Item("butter", "03/05/22", "sealed");
+	// it("simulates day over by reducing expiry of all items by 24 hours", () => {
+	// 	const fridge = new Fridge();
+	// 	const milk = new Item("milk", "21/05/22", "opened");
+	// 	const butter = new Item("butter", "03/05/22", "sealed");
 
-		fridge.signalDoorOpened();
-		fridge.scanAddedItem(milk);
-		fridge.scanAddedItem(butter);
-		fridge.signalDoorClosed();
 
-		fridge.simulateDayOver();
+	// 	fridge.signalDoorOpened();
+	// 	fridge.scanAddedItem(milk);
+	// 	fridge.scanAddedItem(butter);
+	// 	fridge.signalDoorClosed();
 
-		expect(milk.expiry).toStrictEqual(new Date(2022, 4, 20));
-	});
+	// 	fridge.simulateDayOver();
+
+	// 	expect(milk.expiry).toStrictEqual(new Date(2022, 4, 2));
+	// });
 
 	it("sets the current date of the fridge to a specific date", () => {
 		const fridge = new Fridge();
