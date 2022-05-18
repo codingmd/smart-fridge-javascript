@@ -15,6 +15,7 @@ class Fridge {
 
 	signalDoorClosed() {
 		this.fridgeDoorOpened = false;
+    this.expiredOrNot();
 		return this.fridgeDoorOpened;
 	}
 

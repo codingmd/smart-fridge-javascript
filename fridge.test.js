@@ -140,17 +140,18 @@ describe("index", () => {
 
 	it("returns the number of days left till expiry", () => {
 		const fridge = new Fridge();
-		console.log(fridge.currentDate);
+		//sets fridge current date to 5/2/2022
 		fridge.setCurrentDate("02/05/22");
-		console.log(fridge.currentDate);
-		console.log(fridge.currentDate.getTime());
+		
+		//sets item expiry of 10 days from today as 5/28/2022
 		const yoghurt = new Item("yoghurt", testDate(10), "sealed");
 
 		fridge.signalDoorOpened();
 		fridge.scanAddedItem(yoghurt);
 		fridge.signalDoorClosed();
 
-		expect(yoghurt.daysLeftToEat).toStrictEqual(10);
+		//verify item days left to eat from fridge current date 5/2/2022 with item expiry 5/28/2022 = 26
+		expect(yoghurt.daysLeftToEat).toStrictEqual(26);
 	});
 
 	// it("provides a formatted display to view the contents and their remaining expiry with the following order", () => {
