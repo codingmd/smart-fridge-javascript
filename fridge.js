@@ -49,8 +49,10 @@ class Fridge {
 			}
 
 			this.currentDate = new Date(year, month, day);
+		} else {
+			const currentTime = new Date().toLocaleDateString("en-GB");
+			return currentTime;
 		}
-		else this.currentDate = new Date()
 	}
 
 	removeItemFromFridge(item) {
