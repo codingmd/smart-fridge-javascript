@@ -143,6 +143,7 @@ describe("index", () => {
 		console.log(fridge.currentDate);
 		fridge.setCurrentDate("02/05/22");
 		console.log(fridge.currentDate);
+		console.log(fridge.currentDate.getTime());
 		const yoghurt = new Item("yoghurt", testDate(10), "sealed");
 
 		fridge.signalDoorOpened();
