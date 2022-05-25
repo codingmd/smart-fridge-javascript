@@ -9,9 +9,9 @@ const testDate = (daysToRemoveOrAdd, fridgeCurrentDate) => {
 	}
 	let currentDate = new Date(year, currentDateArray[1], currentDateArray[0]);
 	currentDate.setDate(currentDate.getDate() + daysToRemoveOrAdd);
-	let dd = String(testDate.getDate());
-	let mm = String(testDate.getMonth() + 1);
-	let yyyy = testDate.getFullYear();
+	let dd = String(currentDate.getDate());
+	let mm = String(currentDate.getMonth());
+	let yyyy = currentDate.getFullYear();
 	return dd + "/" + mm + "/" + yyyy;
 };
 
@@ -144,8 +144,10 @@ describe("index", () => {
 	it("returns the number of days left till expiry", () => {
 		const fridge = new Fridge();
 		fridge.setCurrentDate("02/05/22");
-		const yoghurt = new Item("yoghurt", testDate(5, "02/05/22"), "sealed");
-
+		
+		let testingTestDate = testDate(5, "02/05/22")
+		const yoghurt = new Item("yoghurt", testingTestDate, "sealed");
+				
 		fridge.signalDoorOpened();
 		fridge.scanAddedItem(yoghurt);
 		fridge.signalDoorClosed();

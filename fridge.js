@@ -77,7 +77,6 @@ class Fridge {
 
 	expiredOrNot() {
 		for (let i = 0; i < this.items.length; i++) {
-			console.log("expiredOrNot" + this.currentDate);
 			this.items[i].daysToExpiry(this.currentDate);
 			if (this.items[i].expiry < this.currentDate) {
 				this.expiredItemsArray.push(this.items[i].name);

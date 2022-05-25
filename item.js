@@ -38,9 +38,6 @@ class Item {
 		let differenceInTime = Math.abs(expiryTime - currentTime);
 		let differenceInDays = differenceInTime / (1000 * 3600 * 24);
 
-		console.log(fridgeDate);
-		console.log(currentTime);
-		console.log(expiryTime);
 		//assign calculate days to expiry to item's daysLeftToEat variable
 		this.daysLeftToEat = Math.ceil(differenceInDays);
 
