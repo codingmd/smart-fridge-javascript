@@ -18,6 +18,6 @@
 - display formatted listing of items with expiry information (done)
 - ordered non-expired items by expiry/ remaining days (done)
 - to add functionality to set current date on tests (done)
-- simulate day over (done)
+- simulate day over () to include new calculated fridge.currentDate
 
 - add scannedTime back in related to current fridge time
