@@ -15,7 +15,7 @@ class Fridge {
 
 	signalDoorClosed() {
 		this.fridgeDoorOpened = false;
-    this.expiredOrNot();
+    	this.expiredOrNot();
 		return this.fridgeDoorOpened;
 	}
 
@@ -51,6 +51,8 @@ class Fridge {
 
 			this.currentDate = new Date(year, month, day);
 		} 
+
+		return this.currentDate;
 	}
 
 	removeItemFromFridge(item) {
@@ -75,6 +77,7 @@ class Fridge {
 
 	expiredOrNot() {
 		for (let i = 0; i < this.items.length; i++) {
+			console.log("expiredOrNot" + this.currentDate);
 			this.items[i].daysToExpiry(this.currentDate);
 			if (this.items[i].expiry < this.currentDate) {
 				this.expiredItemsArray.push(this.items[i].name);
