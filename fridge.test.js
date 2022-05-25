@@ -2,10 +2,13 @@ const Item = require("./item.js");
 const Fridge = require("./fridge.js");
 
 const testDate = (daysToRemoveOrAdd, fridgeCurrentDate) => {
-	let today = fridgeCurrentDate;
-	let testDate = today;
-	testDate.setDate(today.getDate() + daysToRemoveOrAdd);
-
+	let currentDateArray = fridgeCurrentDate.split("/");
+	let year = currentDateArray[2];
+	if (year.length < 4) {
+		year = "20" + year;
+	}
+	let currentDate = new Date(year, currentDateArray[1], currentDateArray[0]);
+	currentDate.setDate(currentDate.getDate() + daysToRemoveOrAdd);
 	let dd = String(testDate.getDate());
 	let mm = String(testDate.getMonth() + 1);
 	let yyyy = testDate.getFullYear();
@@ -141,7 +144,7 @@ describe("index", () => {
 	it("returns the number of days left till expiry", () => {
 		const fridge = new Fridge();
 		fridge.setCurrentDate("02/05/22");
-		const yoghurt = new Item("yoghurt", testDate(5, fridge.currentDate), "sealed");
+		const yoghurt = new Item("yoghurt", testDate(5, "02/05/22"), "sealed");
 
 		fridge.signalDoorOpened();
 		fridge.scanAddedItem(yoghurt);
