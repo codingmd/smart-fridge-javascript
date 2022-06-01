@@ -177,20 +177,22 @@ describe("index", () => {
 		);
 	});
 
-	// it("simulates day over by updating the fridge date and recalculating  expiry dates", () => {
-	// 	const fridge = new Fridge();
-	// 	const milk = new Item("milk", "21/05/22", "opened");
-	// 	const butter = new Item("butter", "03/05/22", "sealed");
+	it("simulates day over by updating the fridge date and recalculating whether expired or not", () => {
+		const fridge = new Fridge();
+		const milk = new Item("milk", testDate(5, "02/05/22"), "opened");
+		const butter = new Item("butter", testDate(3, "02/05/22"), "sealed");
 
-	// 	fridge.signalDoorOpened();
-	// 	fridge.scanAddedItem(milk);
-	// 	fridge.scanAddedItem(butter);
-	// 	fridge.signalDoorClosed();
+		fridge.setCurrentDate("02/05/22");
+		fridge.signalDoorOpened();
+		fridge.scanAddedItem(milk);
+		fridge.scanAddedItem(butter);
+		fridge.signalDoorClosed();
+		
+		fridge.simulateDayOver();
 
-	// 	fridge.simulateDayOver();
-
-	// 	expect(milk.expiry).toStrictEqual(new Date(2022, 4, 2));
-	// });
+		expect(milk.daysLeftToEat).toStrictEqual(2);
+		expect(butter.daysLeftToEat).toStrictEqual(4);
+	});
 
 	// it("sets the current date of the fridge to a specific date", () => {
 	// 	const fridge = new Fridge();

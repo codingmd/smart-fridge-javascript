@@ -117,6 +117,7 @@ class Fridge {
 		// 	this.items[i].expiry.setHours(this.items[i].expiry.getHours() - 24);
 		// }
 		this.currentDate = this.currentDate.setDate(this.currentDate.getDate() + 1);
+		this.expiredOrNot();
 	}
 }
 
