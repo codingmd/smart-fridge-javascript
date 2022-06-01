@@ -192,18 +192,38 @@ describe("index", () => {
 		
 		fridge.simulateDayOver();
 
-		expect(milk.daysLeftToEat).toStrictEqual(2);
-		expect(butter.daysLeftToEat).toStrictEqual(4);
+		expect(milk.daysLeftToEat).toStrictEqual(4);
+		expect(butter.daysLeftToEat).toStrictEqual(2);
 	});
 
-	// it("sets the current date of the fridge to a specific date", () => {
-	// 	const fridge = new Fridge();
-	// 	fridge.setCurrentDate("20/5/22");
+	it("sets the current date of the fridge to a specific date", () => {
+		const fridge = new Fridge();
+		fridge.setCurrentDate("20/5/22");
 
-	// 	expect(fridge.currentDate).toStrictEqual(new Date(2022, 4, 20));
-	// });
+		expect(fridge.currentDate).toStrictEqual(new Date(2022, 4, 20));
+	});
 
-	// it("item expiry is valid based on the setCurrentDate value", () => {});
+	it("item expiry is valid based on the setCurrentDate value and simulate day over", () => {
+		const fridge = new Fridge();
+		const milk = new Item("milk", testDate(-5, "02/05/22"), "opened");
+		const butter = new Item("butter", testDate(-10, "02/05/22"), "sealed");
+		const yoghurt = new Item("yoghurt", testDate(6, "02/05/22"), "sealed");
+		const cheese = new Item("cheese", testDate(1, "02/05/22"), "sealed");
+		const tofu = new Item("tofu", testDate(4, "02/05/22"), "sealed");
 
-	// it("item expiry is valid after simulateDayOver", () => {});
+		fridge.setCurrentDate("02/05/22");
+		fridge.signalDoorOpened();
+		fridge.scanAddedItem(milk);
+		fridge.scanAddedItem(butter);
+		fridge.scanAddedItem(yoghurt);
+		fridge.scanAddedItem(cheese);
+		fridge.scanAddedItem(tofu);
+		fridge.signalDoorClosed();
+		
+		fridge.simulateDayOver();
+
+		expect(fridge.displayItems()).toBe(
+			"EXPIRED: milk\r\nEXPIRED: butter\r\nEXPIRED: cheese\r\ntofu: 3 days remaining\r\nyoghurt: 5 days remaining");
+	});
+
 });
