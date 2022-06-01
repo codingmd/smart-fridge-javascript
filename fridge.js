@@ -113,10 +113,8 @@ class Fridge {
 	}
 
 	simulateDayOver() {
-		// for (let i = 0; i < this.items.length; i++) {
-		// 	this.items[i].expiry.setHours(this.items[i].expiry.getHours() - 24);
-		// }
-		this.currentDate = this.currentDate.setDate(this.currentDate.getDate() + 1);
+		this.currentDate = new Date(this.currentDate.setDate(this.currentDate.getDate() + 1));
+		console.log("fridge date after" + this.currentDate);
 		this.expiredOrNot();
 	}
 }
