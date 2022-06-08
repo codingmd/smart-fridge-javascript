@@ -15,7 +15,7 @@ class Fridge {
 
 	signalDoorClosed() {
 		this.fridgeDoorOpened = false;
-    	this.expiredOrNot();
+		this.expiredOrNot();
 		return this.fridgeDoorOpened;
 	}
 
@@ -50,7 +50,7 @@ class Fridge {
 			}
 
 			this.currentDate = new Date(year, month, day);
-		} 
+		}
 
 		return this.currentDate;
 	}
@@ -76,13 +76,9 @@ class Fridge {
 	}
 
 	expiredOrNot() {
+		this.resetExpiryArrays();
+
 		for (let i = 0; i < this.items.length; i++) {
-			// this.items[i].daysToExpiry(this.currentDate);
-			// let itemDate = this.items[i].expiry;
-			// itemDate.setHours(0,0,0,0);
-			// let currentDateDay = this.currentDate
-			// currentDateDay.setHours(0,0,0,0);
-			// if (itemDate < currentDateDay) {
 			this.items[i].daysToExpiry(this.currentDate);
 			if (this.items[i].expiry < this.currentDate) {
 				this.expiredItemsArray.push(this.items[i].name);
@@ -109,6 +105,12 @@ class Fridge {
 		}
 	}
 
+	resetExpiryArrays() {
+		this.expiredItemsArray = [];
+		this.inDateItemsArray = [];
+		this.formattedDisplayArray = [];
+	}
+
 	displayItems() {
 		return (
 			"EXPIRED: " +
@@ -119,7 +121,9 @@ class Fridge {
 	}
 
 	simulateDayOver() {
-		this.currentDate = new Date(this.currentDate.setDate(this.currentDate.getDate() + 1));
+		this.currentDate = new Date(
+			this.currentDate.setDate(this.currentDate.getDate() + 1)
+		);
 		console.log("fridge date after" + this.currentDate);
 		this.expiredOrNot();
 	}
