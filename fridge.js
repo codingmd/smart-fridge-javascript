@@ -33,11 +33,6 @@ class Fridge {
 		return this.itemCount;
 	}
 
-	// setCurrentDate() {
-	// 	const currentTime = new Date().toLocaleDateString("en-GB");
-	// 	return currentTime;
-	// }
-
 	setCurrentDate(currentDateString) {
 		if (currentDateString) {
 			let currentDateArray = currentDateString.split("/");
@@ -124,7 +119,7 @@ class Fridge {
 		this.currentDate = new Date(
 			this.currentDate.setDate(this.currentDate.getDate() + 1)
 		);
-		console.log("fridge date after" + this.currentDate);
+
 		this.expiredOrNot();
 	}
 }
