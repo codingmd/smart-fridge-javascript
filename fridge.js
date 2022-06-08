@@ -95,7 +95,7 @@ class Fridge {
 
 		for (let i = 0; i < this.inDateItemsArray.length; i++) {
 			let daysremaining = "";
-			if (this.inDateItemsArray[i].daysLeftToEat < 2) {
+			if (this.inDateItemsArray[i].daysLeftToEat === 1) {
 				daysremaining = " day remaining";
 			} else {
 				daysremaining = " days remaining";

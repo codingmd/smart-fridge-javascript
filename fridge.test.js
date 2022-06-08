@@ -222,8 +222,9 @@ describe("index", () => {
 		
 		fridge.simulateDayOver();
 
+		console.log(fridge.displayItems());
 		expect(fridge.displayItems()).toBe(
-			"EXPIRED: milk\r\nEXPIRED: butter\r\nEXPIRED: cheese\r\ntofu: 3 days remaining\r\nyoghurt: 5 days remaining");
+			"EXPIRED: milk\r\nEXPIRED: butter\r\ncheese: 0 days remaining\r\ntofu: 3 days remaining\r\nyoghurt: 5 days remaining");
 	});
 
 });
