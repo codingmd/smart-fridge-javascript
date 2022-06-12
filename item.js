@@ -1,10 +1,13 @@
+const Fridge = require("./fridge.js");
+
+
 class Item {
 	constructor(name, expiryString, condition) {
 		this.name = name;
 		this.expiry = this.setExpiryDate(expiryString);
 		this.condition = condition;
 		this.scannedTime = null;
-		// this.daysLeftToEat = this.daysToExpiry(fridgeDate);
+		this.daysLeftToEat = null;
 	}
 
 	setExpiryDate(expiryString) {
@@ -35,7 +38,11 @@ class Item {
 		let differenceInTime = Math.abs(expiryTime - currentTime);
 		let differenceInDays = differenceInTime / (1000 * 3600 * 24);
 
-		return Math.ceil(differenceInDays);
+		//assign calculate days to expiry to item's daysLeftToEat variable
+		this.daysLeftToEat = Math.ceil(differenceInDays);
+
+		//return Math.ceil(differenceInDays);
+		return this.daysLeftToEat;
 	}
 }
 
